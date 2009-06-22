@@ -21,6 +21,10 @@ $.describe("jSpec library", function() {
         $(5).should.not.equal(5);
     });
 
+    $.it("should offer means to explicitly mark a spec as failed", function() {
+        $.fail("this spec must fail");
+    });
+
 });
 
 $.run();

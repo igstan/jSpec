@@ -34,6 +34,10 @@
         });
     };
 
+    jSpec.fail = function (message) {
+        throw new Error;
+    };
+
     var Matcher = function (testObject) {
         this.testObject = testObject;
     };
