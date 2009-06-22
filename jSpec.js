@@ -1,3 +1,8 @@
+/**
+ * @author  Ionut G. Stan
+ * @license See LICENSE in the root of the project
+ */
+
 (function () {
     // The initialization of the jSpec object is inspired by the jQuery library
     var global = this;
@@ -53,13 +58,13 @@
 
     Matcher.prototype = {
         constructor : Matcher,
-        
+
         negativeAssertion : false,
 
         get should () {
             return this;
         },
-        
+
         get not () {
             this.negativeAssertion = true;
             return this;
@@ -69,7 +74,7 @@
             if (this.testObject == value && this.negativeAssertion) {
                 throw new NonEqualityMatch;
             }
-            
+
             if (this.testObject != value && !this.negativeAssertion) {
                 throw new NonEqualityMatch;
             }
@@ -80,7 +85,7 @@
         this.message = message;
     };
     NonEqualityMatch.prototype = new Error();
-    
+
     var PendingMessage = function (message) {
         this.message = message;
     };

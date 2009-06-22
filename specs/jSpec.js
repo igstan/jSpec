@@ -1,6 +1,6 @@
 /**
  * @author  Ionut G. Stan
- * @license BSD
+ * @license See LICENSE in the root of the project
  */
 
 $.describe("jSpec library", function() {
