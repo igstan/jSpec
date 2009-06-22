@@ -21,7 +21,7 @@
     jSpec.it = function (specMessage, specTest) {
         try {
             specTest();
-            print(specMessage);
+            print("SUCCESS: " + specMessage);
         } catch (e) {
             print("FAILURE: " + specMessage);
         }
