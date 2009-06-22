@@ -25,6 +25,12 @@ $.describe("jSpec library", function() {
         $.fail("this spec must fail");
     });
 
+    $.it("should offer means to mark a spec as pending", function() {
+        $.pending("this message reminds why the spec is marked as pending");
+
+        $(5).should.not.equal(5); // this line will not get executed
+    });
+
 });
 
 $.run();

@@ -23,7 +23,11 @@
             specTest();
             print("SUCCESS: " + specMessage);
         } catch (e) {
-            print("FAILURE: " + specMessage);
+            if (e instanceof PendingMessage) {
+                print("PENDING: " + e.message);
+            } else {
+                print("FAILURE: " + specMessage);
+            }
         }
     };
 
@@ -36,6 +40,10 @@
 
     jSpec.fail = function (message) {
         throw new Error;
+    };
+
+    jSpec.pending = function (message) {
+        throw new PendingMessage(message);
     };
 
     var Matcher = function (testObject) {
@@ -71,5 +79,10 @@
         this.message = message;
     };
     NonEqualityMatch.prototype = new Error();
+    
+    var PendingMessage = function (message) {
+        this.message = message;
+    };
+    PendingMessage.prototype = new Error();
 
 })();
