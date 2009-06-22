@@ -31,6 +31,10 @@ $.describe("jSpec library", function() {
         $(5).should.not.equal(5); // this line will not get executed
     });
 
+    $.it("should be able to compare arrays of arbitrary depth", function() {
+        $([[0, 2], [2, 4]]).should.equal([[0, 2], [2, 4]]);
+    });
+
 });
 
 $.run();

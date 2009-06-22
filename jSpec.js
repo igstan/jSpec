@@ -4,6 +4,8 @@
  */
 
 (function () {
+    var ARRAY_TOSTRING = "[object Array]";
+
     // The initialization of the jSpec object is inspired by the jQuery library
     var global = this;
 
@@ -51,6 +53,26 @@
     jSpec.pending = function (message) {
         throw new PendingMessage(message);
     };
+    
+    var isArray = function (test) {
+        return Object.prototype.toString.apply(test) === ARRAY_TOSTRING;
+    };
+
+    var compareArrays = function (a, b) {
+        if (a.length !== b.length) {
+            throw new NonEqualityMatch;
+        }
+
+        a.forEach(function (item, i) {
+            if (isArray(a[i]) && isArray(b[i])) {
+                compareArrays(a[i], b[i]);
+            } else {
+                if (a[i] != b[i]) {
+                    throw new NonEqualityMatch;
+                }
+            }
+        });
+    };
 
     var Matcher = function (testObject) {
         this.testObject = testObject;
@@ -71,12 +93,16 @@
         },
 
         equal : function (value) {
-            if (this.testObject == value && this.negativeAssertion) {
-                throw new NonEqualityMatch;
-            }
+            if (isArray(this.testObject) && isArray(value)) {
+                compareArrays(this.testObject, value);
+            } else {
+                if (this.testObject == value && this.negativeAssertion) {
+                    throw new NonEqualityMatch;
+                }
 
-            if (this.testObject != value && !this.negativeAssertion) {
-                throw new NonEqualityMatch;
+                if (this.testObject != value && !this.negativeAssertion) {
+                    throw new NonEqualityMatch;
+                }
             }
         }
     };
