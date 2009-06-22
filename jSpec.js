@@ -33,8 +33,10 @@
         } catch (e) {
             if (e instanceof PendingMessage) {
                 print("PENDING: " + e.message);
-            } else {
+            } else if (e instanceof NonEqualityMatch) {
                 print("FAILURE: " + specMessage);
+            } else {
+                print("FAILURE: " + e.message);
             }
         }
     };

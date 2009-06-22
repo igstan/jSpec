@@ -35,6 +35,10 @@ $.describe("jSpec library", function() {
         $([[0, 2], [2, 4]]).should.equal([[0, 2], [2, 4]]);
     });
 
+    $.it("should not hide messages from external exceptions", function() {
+        throw new Error("This message should be displayed in the test report");
+    });
+
 });
 
 $.run();
