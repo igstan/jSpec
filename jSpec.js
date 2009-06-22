@@ -1,4 +1,5 @@
 (function () {
+    // The initialization of the jSpec object is inspired by the jQuery library
     var global = this;
 
     var jSpec = global.jSpec = global.$ = function (underTest) {
