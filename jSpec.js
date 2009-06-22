@@ -23,8 +23,7 @@
             specTest();
             print(specMessage);
         } catch (e) {
-            print(e);
-            print("Fail: " + specMessage);
+            print("FAILURE: " + specMessage);
         }
     };
 
@@ -52,5 +51,10 @@
             }
         }
     };
+
+    var NonEqualityMatch = function (message) {
+        this.message = message;
+    };
+    NonEqualityMatch.prototype = new Error();
 
 })();
