@@ -5,11 +5,11 @@
 
 $.describe("jSpec library", function() {
 
-    $.it("should allow simple equality checks", function() {
+    $.it("should allow simple equality checks to pass", function() {
         $(5).should.equal(5);
     });
-    
-    $.it("should allow simple inequality checks", function() {
+
+    $.it("should allow simple equality checks to fail", function() {
         $(5).should.equal(4);
     });
 
