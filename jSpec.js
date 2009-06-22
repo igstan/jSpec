@@ -40,13 +40,24 @@
 
     Matcher.prototype = {
         constructor : Matcher,
+        
+        negativeAssertion : false,
 
         get should () {
             return this;
         },
+        
+        get not () {
+            this.negativeAssertion = true;
+            return this;
+        },
 
         equal : function (value) {
-            if (this.testObject != value) {
+            if (this.testObject == value && this.negativeAssertion) {
+                throw new NonEqualityMatch;
+            }
+            
+            if (this.testObject != value && !this.negativeAssertion) {
                 throw new NonEqualityMatch;
             }
         }

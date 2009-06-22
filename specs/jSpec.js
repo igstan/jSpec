@@ -13,6 +13,14 @@ $.describe("jSpec library", function() {
         $(5).should.equal(4);
     });
 
+    $.it("should allow simple inequality checks to pass", function() {
+        $(5).should.not.equal(4);
+    });
+
+    $.it("should allow simple inequality checks to fail", function() {
+        $(5).should.not.equal(5);
+    });
+
 });
 
 $.run();
