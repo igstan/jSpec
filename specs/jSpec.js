@@ -39,6 +39,14 @@ $.describe("jSpec library", function() {
         throw new Error("This message should be displayed in the test report");
     });
 
+    $.it("should return a meaningful description for assertion failures", function() {
+        try {
+            $(4).should.equal(5);
+        } catch (e) {
+            $(e.message).should.equal("Failed asserting that 4 equals 5");
+        }
+    });
+
 });
 
 $.run();

@@ -62,7 +62,7 @@
 
     var compareArrays = function (a, b) {
         if (a.length !== b.length) {
-            throw new NonEqualityMatch;
+            throw new NonEqualityMatch("Failed asserting length of arrays: " + a.length + " does not equal " + b.length);
         }
 
         a.forEach(function (item, i) {
@@ -70,7 +70,7 @@
                 compareArrays(a[i], b[i]);
             } else {
                 if (a[i] != b[i]) {
-                    throw new NonEqualityMatch;
+                    throw new NonEqualityMatch("Failed asserting that " + a[i] + " equals " + b[i]);
                 }
             }
         });
@@ -99,11 +99,11 @@
                 compareArrays(this.testObject, value);
             } else {
                 if (this.testObject == value && this.negativeAssertion) {
-                    throw new NonEqualityMatch;
+                    throw new NonEqualityMatch("Failed asserting that " + this.testObject + " does not equals " + value);
                 }
 
                 if (this.testObject != value && !this.negativeAssertion) {
-                    throw new NonEqualityMatch;
+                    throw new NonEqualityMatch("Failed asserting that " + this.testObject + " equals " + value);
                 }
             }
         }
