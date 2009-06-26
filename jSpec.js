@@ -49,7 +49,7 @@
     };
 
     jSpec.fail = function (message) {
-        throw new Error;
+        throw new Error(message);
     };
 
     jSpec.pending = function (message) {
